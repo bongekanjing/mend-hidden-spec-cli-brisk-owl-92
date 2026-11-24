@@ -109,7 +109,9 @@ function occurrences(lines: string[], o: string[], level: number): number[] {
   return out;
 }
 
-/** The first tier at which O occurs, and its occurrences there; null when it occurs at none. */
+/** The first tier at which O occurs, and its occurrences there; null when it occurs at none. A run's
+ * lines are compared at the tier under test, so a match at tier 1 ignores trailing blanks and one at
+ * tier 2 ignores leading and trailing ones, exactly as section 5 defines them. */
 function findTier(lines: string[], o: string[], strict: boolean): { level: number; at: number[] } | null {
   const last = strict ? 1 : 3;
   for (let level = 0; level < last; level += 1) {
